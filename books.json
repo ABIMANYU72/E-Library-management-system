@@ -2,5 +2,22 @@
     { "title": "JavaScript Basics", "author": "Ulaganayagan Kamal", "category": "Programming" },
     { "title": "PHP for Beginners", "author": "Superstar Rajni", "category": "Web Development" },
     { "title": "CSS Mastery", "author": "Thalapathy Vijay", "category": "Design" },
-    { "title": "HTML Basics", "author": "Thala Ajith", "category": "Language" }
+    { "title": "HTML Basics", "author": "Thala Ajith", "category": "Language" },
+    { "title": "Python Crash Course", "author": "Vikram", "category": "Programming" },
+    { "title": "React.js Essentials", "author": "Dhanush", "category": "Web Development" },
+    { "title": "Node.js in Action", "author": "Suriya", "category": "Backend" },
+    { "title": "MongoDB Fundamentals", "author": "Arya", "category": "Database" },
+    { "title": "Mastering PostgreSQL", "author": "Jayam Ravi", "category": "Database" },
+    { "title": "Django for Web Apps", "author": "Karthi", "category": "Web Development" },
+    { "title": "Vue.js Quick Start", "author": "Sivakarthikeyan", "category": "Frontend" },
+    { "title": "Cybersecurity Essentials", "author": "Vishal", "category": "Security" },
+    { "title": "Big Data Analytics", "author": "Madhavan", "category": "Data Science" },
+    { "title": "Machine Learning Guide", "author": "Nayanthara", "category": "Artificial Intelligence" },
+    { "title": "Deep Learning with Python", "author": "Trisha", "category": "AI & ML" },
+    { "title": "Kubernetes for Beginners", "author": "Samantha", "category": "Cloud Computing" },
+    { "title": "Docker in Practice", "author": "Anirudh", "category": "DevOps" },
+    { "title": "Git & GitHub Essentials", "author": "Yogi Babu", "category": "Version Control" },
+    { "title": "Flutter Mobile Apps", "author": "Siddharth", "category": "Mobile Development" },
+    { "title": "Swift for iOS", "author": "Parthiban", "category": "Mobile Development" }
 ]
+
