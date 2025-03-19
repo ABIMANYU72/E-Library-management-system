@@ -1,0 +1,160 @@
+/* Vibrant Background & Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffdde1);
+    text-align: center;
+    color: #333;
+}
+
+/* Main Container */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Headings */
+h1, h2 {
+    color: #4a148c;
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 12px;
+    width: 60%;
+    border: 2px solid #7b1fa2;
+    border-radius: 5px;
+    outline: none;
+}
+
+button {
+    padding: 12px 20px;
+    background: #7b1fa2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #4a148c;
+}
+
+/* Cards for Book Lists */
+.card {
+    margin-top: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Remove List Points & Add Book Icons */
+#borrowed-books {
+    list-style: none;
+    padding: 0;
+}
+
+#borrowed-books li {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align text left, buttons right */
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+}
+
+/* Add Book Icon */
+#borrowed-books li::before {
+    content: "📖";
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Borrow & Return Buttons (Aligned Right) */
+.book-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto; /* Push buttons to the right */
+}
+
+.book-actions button {
+    background: #ff6f61;
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+.book-actions button:hover {
+    background: #d84315;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .search-container {
+        flex-direction: column;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    #borrowed-books li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .book-actions {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
+/* Fix Borrow Button Alignment in Search Results */
+#book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds spacing between books */
+}
+
+.book-item {
+    display: flex;
+    justify-content: space-between; /* Pushes button to the right */
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+}
+
+/* Adjust Borrow Button */
+.book-item button {
+    background: #7b1fa2;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-item button:hover {
+    background: #4a148c;
+}
+

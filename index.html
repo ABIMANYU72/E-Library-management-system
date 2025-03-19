@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>E-Library Management System</h1>
+        
+        <!-- Search Books -->
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search by title, author, or category">
+            <button onclick="searchBooks()">🔍 Search</button>
+        </div>
+        
+        <div id="book-list" class="card"></div>
+        
+        <!-- Borrowed Books -->
+        <h2>Borrowed Books</h2>
+        <ul id="borrowed-books" class="card"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
