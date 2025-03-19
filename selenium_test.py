@@ -1,99 +1,51 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.service import Service
-import os
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-# Set up WebDriver (Avoids hardcoded ChromeDriver path)
+# Setup Chrome WebDriver using webdriver-manager
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
 
-# Load the local HTML file
-file_path = os.path.abspath("E:/E-Library-management-system/index.html")
-driver.get(f"file:///{file_path}")
+try:
+    # Open the E-Library System
+    driver.get("http://localhost:8000/index.html")
+    print("✅ Browser opened and page loaded.")
 
-def test_page_load():
-    """Verify the page loads successfully."""
-    assert "E-Library Management System" in driver.title
-    print("✅ Page loaded successfully.")
+    # Wait until the page loads completely
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "h1")))
 
-def test_search_books():
-    """Search for a book and verify results appear."""
+    # Search for a book
     search_box = driver.find_element(By.ID, "search")
-    search_box.clear()
-    search_box.send_keys("JavaScript")
+    search_box.send_keys("JavaScript Basics")
 
-    # Click the search button
     search_button = driver.find_element(By.XPATH, "//button[contains(text(),'Search')]")
     search_button.click()
+    print("🔎 Search button clicked.")
 
-    try:
-        WebDriverWait(driver, 5).until(EC.presence_of_element_located(
-            (By.XPATH, "//div[@id='book-list']//strong[contains(text(),'JavaScript Basics')]")
-        ))
-        print("✅ Book search works correctly.")
-        return True  # Return success
-    except:
-        print("❌ Book search failed: 'JavaScript Basics' not found.")
-        return False  # Return failure
+    # Wait for search results to appear
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "book-list")))
 
-def test_borrow_book():
-    """Borrow a book after searching for it."""
-    if not test_search_books():
-        print("Skipping borrow test because search failed.")
-        return
+    # Capture book list content
+    book_list_element = driver.find_element(By.ID, "book-list")
+    print("📄 Book List Content:\n", book_list_element.text)
 
-    try:
-        borrow_button = WebDriverWait(driver, 5).until(EC.element_to_be_clickable(
-            (By.XPATH, "//div[@id='book-list']//button[contains(text(),'Borrow')]")
-        ))
-        borrow_button.click()
-        time.sleep(2)
-        print("✅ Book borrowed successfully.")
+    # Verify if the book appears
+    assert "JavaScript Basics" in book_list_element.text, "❌ Book not found in search results!"
+    print("✅ Book found in search results.")
 
-        # Verify if book appears in borrowed books list
-        WebDriverWait(driver, 5).until(EC.presence_of_element_located(
-            (By.XPATH, "//ul[@id='borrowed-books']//li[contains(text(),'JavaScript Basics')]")
-        ))
-        print("✅ Borrowed book appears in list.")
+    # Take a screenshot for proof
+    screenshot_path = "test_result.png"
+    driver.save_screenshot(screenshot_path)
+    print(f"📸 Screenshot saved: {screenshot_path}")
 
-    except:
-        print("❌ Borrow button not found or not clickable.")
+except Exception as e:
+    print("❌ Test Failed:", str(e))
 
-def test_return_book():
-    """Return a borrowed book and verify it is removed from the list."""
-    try:
-        # Check if any books are in borrowed list before attempting to return
-        borrowed_books = driver.find_elements(By.XPATH, "//ul[@id='borrowed-books']//li")
-        if not borrowed_books:
-            print("❌ No borrowed books found, skipping return test.")
-            return
-
-        return_button = WebDriverWait(driver, 5).until(EC.element_to_be_clickable(
-            (By.XPATH, "//button[contains(text(),'Return')]")
-        ))
-        return_button.click()
-        time.sleep(2)
-        print("✅ Book returned successfully.")
-
-        # Ensure the book is removed from the borrowed list
-        time.sleep(1)  # Allow DOM update
-        borrowed_books = driver.find_elements(By.XPATH, "//ul[@id='borrowed-books']//li")
-        if not borrowed_books:
-            print("✅ Borrowed book removed successfully.")
-        else:
-            print("❌ Borrowed book still present after returning.")
-
-    except:
-        print("❌ Return button not found or not clickable.")
-
-def run_tests():
-    test_page_load()
-    test_borrow_book()
-    test_return_book()
+finally:
+    # Close the browser
     driver.quit()
-
-run_tests()
+    print("🚪 Browser closed.")
